@@ -10,7 +10,7 @@ library(stylo)
 library(stopwords)
 ```
 Objectif : création d'un nuage de mots du corpus de sermons lemmatisés et sans les stopwords typiques en latin (à partir de la liste fournie par perseus)
-```{r}
+````ruby
 corpus=SimpleCorpus(DirSource("~/Documents/Documents/Stylometry/Sermons_Pater/"))
 #on enlève tous les chiffres qui suivent les mots issus de la lemmatisation de Deucalion
 corpus1=tm_map(corpus, removeNumbers)
@@ -23,7 +23,7 @@ inspect(dtm)
 word_cloud(dtm,colors=brewer.pal(8, "Dark2"), n=100, min.freq=20)
 ```
 On crééé deux tableaux, l'un qui contient les 100 termes les plus fréquents et un autre, le tableau lexical des termes du corpus. Enfin, on mesure les termes spécifiques des textes du corpus.
-```{r}
+```ruby
 df=frequent_terms(dtm, variable = NULL, n = 100)
 
 dtm=R.temis::build_dtm(corpus_stopwords)
@@ -40,7 +40,7 @@ term_freq(dtm, 'uerbum')
 term_freq(dtm, 'sol')
 ```
 On recherche des coocurrences de termes au sein du corpus, ici "noster" qui appartient au champ lexical de la prière du Notre Père. Ensuite, on détermine les concordances existant entre les lemmes. Enfin, on dresse un graphe des lemmes du corpus dont la taille des arrêtes est proportionnelle au niveau de leur coocurrence.
-```{r}
+```ruby
 cut=split_documents(corpus_stopwords, 1) #découpage du corpus en paragraphes
 dtm_cut=build_dtm(cut)
 cooc_terms(dtm_cut, "noster")
@@ -50,13 +50,13 @@ concordances(corpus_stopwords,dtm,c("noster","debitor"))
 terms_graph(dtm_cut, vertex.label.cex = 0.5)
 ```
 On réalise une analyse factorielle de correspondance sur les sermons du corpus. On évalue les trois documents qui contribuent le plus à l'axe 1 de l'AFC.
-```{r}
+```ruby
 AC=corpus_ca(corpus_stopwords, dtm) 
 explor(AC)
 contributive_docs(corpus_stopwords,AC, 1, ndocs=4)
 ```
 On applique la méthode Reinert, 1983, grâce au package Rainette (The Reinert Method for Textual Data Clustering).
-```{r}
+```ruby
 library(rainette)
 library(quanteda)
 dfm <- as.dfm(dtm)
