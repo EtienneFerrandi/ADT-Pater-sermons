@@ -23,6 +23,7 @@ inspect(dtm)
 word_cloud(dtm,colors=brewer.pal(8, "Dark2"), n=100, min.freq=20)
 ```
 On crééé deux tableaux, l'un qui contient les 100 termes les plus fréquents et un autre, le tableau lexical des termes du corpus. Enfin, on mesure les termes spécifiques des textes du corpus.
+
 ```ruby
 df=frequent_terms(dtm, variable = NULL, n = 100)
 
