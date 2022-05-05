@@ -1,4 +1,4 @@
-# ADT_Pater_sermons
+# ADT-Pater-sermons
 Il s'agit de mener une analyse des données textuelles des sermons du Pater chez Augustin et Césaire d'Arles.
 
 ```ruby
